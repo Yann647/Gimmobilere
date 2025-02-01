@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" >
+
+<div layout:fragment="content">
+
+    <div class="card" style="width: 48rem;">
+        <div class="card-header">
+            Modification d'un Utilisateur
+        </div>
+        <div class="card-body">
+            <form th:action="@{/user/update}" th:method="POST" th:object="${user}">
+                <input type="hidden" th:value="${user.id}" name="id">
+
+                <div class="mb-3">
+                    <label class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="nom" th:value="${user.nom}" name="nom" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" th:value="${user.email}" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" th:value="${user.password}" name="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Terminer</button>
+                <button type="reset" class="btn btn-secondary">Annuler</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" >
+
+<div layout:fragment="content">
+
+    <div class="card" style="width: 48rem;">
+        <div class="card-header">
+            Modification d'une Propriété
+        </div>
+        <div class="card-body">
+            <form th:action="@{/propriete/update}" th:method="POST" th:object="${propriete}">
+                <input type="hidden" th:value="${propriete.id}" name="id">
+
+                <div class="mb-3">
+                    <label class="form-label">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" th:value="${propriete.adresse}" name="adresse" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Prix</label>
+                    <input type="number" class="form-control" id="prix" th:value="${propriete.prix}" name="prix" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Terminer</button>
+                <button type="reset" class="btn btn-secondary">Annuler</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</html>

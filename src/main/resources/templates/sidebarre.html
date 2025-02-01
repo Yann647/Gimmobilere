@@ -1,0 +1,50 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<nav class="sidebar-nav">
+    <ul id="sidebarnav">
+        <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" th:href="@{/}" aria-expanded="false">
+                <i data-feather="home" class="feather-icon"></i>
+                <span class="hide-menu">Accueil</span>
+            </a>
+        </li>
+        <li class="list-divider"></li>
+        <li class="nav-small-cap"><span class="hide-menu">Gestion</span></li>
+
+        <li class="sidebar-item">
+            <a class="sidebar-link" th:href="@{/contrat/liste}" aria-expanded="false">
+                <i data-feather="file-text" class="feather-icon"></i>
+                <span class="hide-menu">Contrats</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" th:href="@{/propriete/liste}" aria-expanded="false">
+                <i data-feather="home" class="feather-icon"></i>
+                <span class="hide-menu">Propriétés</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" th:href="@{/reservation/liste}" aria-expanded="false">
+                <i data-feather="calendar" class="feather-icon"></i>
+                <span class="hide-menu">Réservations</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" th:href="@{/user/liste}" aria-expanded="false">
+                <i data-feather="users" class="feather-icon"></i>
+                <span class="hide-menu">Utilisateurs</span>
+            </a>
+        </li>
+
+        <li class="list-divider"></li>
+
+        <li class="nav-small-cap"><span class="hide-menu">Extra</span></li>
+
+        <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" th:href="@{/logout}" aria-expanded="false">
+                <i data-feather="log-out" class="feather-icon"></i>
+                <span class="hide-menu">Déconnexion</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+</html>

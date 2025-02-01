@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" >
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a th:href="@{/reservation/ajout}" class="btn btn-primary">Ajouter une Réservation</a>
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Statut</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="reservation : ${reservations}">
+                                <td th:text="${reservation.id}"></td>
+                                <td th:text="${reservation.date}"></td>
+                                <td th:text="${reservation.statut}"></td>
+                                <td>
+                                    <a class="btn btn-primary" th:href="@{'/reservation/edit/'+${reservation.id}}">Modifier</a>
+                                    <a class="btn btn-danger" th:href="@{'/reservation/supprimer/'+${reservation.id}}">Supprimer</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</html>

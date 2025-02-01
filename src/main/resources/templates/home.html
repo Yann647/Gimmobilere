@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Gestion Immobilière</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Accueil - Gestion Immobilière</h1>
+    <div>
+        <ul>
+            <li><a th:href="@{/contrat/liste}">Gérer les contrats</a></li>
+            <li><a th:href="@{/propriete/liste}">Gérer les propriétés</a></li>
+            <li><a th:href="@{/reservation/liste}">Gérer les réservations</a></li>
+            <li><a th:href="@{/user/liste}">Gérer les utilisateurs</a></li>
+            <li><a th:href="@{/inscription}">S'inscrire</a></li>
+            <li><a th:href="@{/login}">Se connecter</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

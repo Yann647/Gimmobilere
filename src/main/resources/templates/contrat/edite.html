@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" >
+
+<div layout:fragment="content">
+
+    <div class="card" style="width: 48rem;">
+        <div class="card-header">
+            Modification d'un Contrat
+        </div>
+        <div class="card-body">
+            <form th:action="@{/contrat/update}" th:method="POST" th:object="${contrat}">
+                <input type="hidden" th:value="${contrat.id}" name="id">
+
+                <div class="mb-3">
+                    <label class="form-label">Type de contrat</label>
+                    <input type="text" class="form-control" id="type" th:value="${contrat.type}" name="type" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Date de signature</label>
+                    <input type="date" class="form-control" id="dateSignature" th:value="${contrat.dateSignature}" name="dateSignature" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Terminer</button>
+                <button type="reset" class="btn btn-secondary">Annuler</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</html>

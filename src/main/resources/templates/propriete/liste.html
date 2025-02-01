@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" >
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a th:href="@{/propriete/ajout}" class="btn btn-primary">Ajouter une Propriété</a>
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Adresse</th>
+                                <th>Prix</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="propriete : ${proprietes}">
+                                <td th:text="${propriete.id}"></td>
+                                <td th:text="${propriete.adresse}"></td>
+                                <td th:text="${propriete.prix}"></td>
+                                <td>
+                                    <a class="btn btn-primary" th:href="@{'/propriete/edit/'+${propriete.id}}">Modifier</a>
+                                    <a class="btn btn-danger" th:href="@{'/propriete/supprimer/'+${propriete.id}}">Supprimer</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</html>
