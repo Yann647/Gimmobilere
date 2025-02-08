@@ -18,16 +18,26 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Type</th>
+                                <th>Type de Contrat</th>
                                 <th>Date de Signature</th>
+                                <th>Date de Fin</th>
+                                <th>Montant</th>
+                                <th>Propriete</th>
+                                <th>Le nom du client</th>
+                                <th>Reservation</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="contrat : ${contrats}">
                                 <td th:text="${contrat.id}"></td>
-                                <td th:text="${contrat.type}"></td>
+                                <td th:text="${contrat.typeContrat}"></td>
                                 <td th:text="${contrat.dateSignature}"></td>
+                                <td th:text="${contrat}"></td>
+                                <td th:text="${contrat.montant}"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <a class="btn btn-primary" th:href="@{'/contrat/edit/'+${contrat.id}}">Modifier</a>
                                     <a class="btn btn-danger" th:href="@{'/contrat/supprimer/'+${contrat.id}}">Supprimer</a>

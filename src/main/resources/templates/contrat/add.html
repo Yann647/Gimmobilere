@@ -7,13 +7,18 @@
 
     <div class="card" style="width: 48rem;">
         <div class="card-header">
-            Ajout d'un Contrat
+            Ajout d'un Contrat test
         </div>
         <div class="card-body">
             <form th:action="@{/contrat/save}" th:method="POST" th:object="${contrat}">
                 <div class="mb-3">
                     <label class="form-label">Type de contrat</label>
-                    <input type="text" class="form-control" id="type" name="type" required>
+                    <select class="form-control" id="typeContrat" name="typeContrat" th:field="*{typeContrat}" required>
+                        <option value="" disabled selected>Choisir un type</option>
+                        <option th:each="type : ${T(com.gestion.immobiliere.Gimmobilere.constant.TypeContrat).values()}"
+                                th:value="${type}"
+                                th:text="${type}"></option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Date de signature</label>

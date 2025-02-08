@@ -1,5 +1,7 @@
 package com.gestion.immobiliere.Gimmobilere.service.DTO;
 
+import com.gestion.immobiliere.Gimmobilere.constant.TypeContrat;
+
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ public class ContratDTO {
     private long id;
     private Date dateContrat;
     private double montant;
+    private TypeContrat typeContrat;
     private Long reservationId;
     private Long userId;
 
@@ -33,6 +36,14 @@ public class ContratDTO {
 
     public void setMontant(double montant) {
         this.montant = montant;
+    }
+
+    public TypeContrat getTypeContrat() {
+        return typeContrat;
+    }
+
+    public void setTypeContrat(TypeContrat typeContrat) {
+        this.typeContrat = typeContrat;
     }
 
     public Long getReservationId() {

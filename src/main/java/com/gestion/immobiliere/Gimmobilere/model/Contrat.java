@@ -1,5 +1,6 @@
 package com.gestion.immobiliere.Gimmobilere.model;
 
+import com.gestion.immobiliere.Gimmobilere.constant.TypeContrat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -12,6 +13,9 @@ public class Contrat {
     private Date dateDebut;
     private Date dateFin;
     private Double montant;
+
+    @Enumerated(EnumType.STRING)
+    private TypeContrat typeContrat;
 
     @ManyToOne
     private Propriete propriete;
@@ -52,6 +56,14 @@ public class Contrat {
 
     public void setMontant(Double montant) {
         this.montant = montant;
+    }
+
+    public TypeContrat getTypeContrat() {
+        return typeContrat;
+    }
+
+    public void setTypeContrat(TypeContrat typeContrat) {
+        this.typeContrat = typeContrat;
     }
 
     public Propriete getPropriete() {

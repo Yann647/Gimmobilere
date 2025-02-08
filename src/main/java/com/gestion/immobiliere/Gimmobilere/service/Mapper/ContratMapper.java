@@ -20,6 +20,7 @@ public class ContratMapper {
         entity.setId(dto.getId());
         entity.setDateDebut(dto.getDateContrat());
         entity.setMontant(dto.getMontant());
+        entity.setTypeContrat(dto.getTypeContrat());
 
         if (dto.getReservationId() != null) {
             Reservation reservation = new Reservation();
@@ -45,6 +46,7 @@ public class ContratMapper {
         dto.setId(entity.getId());
         dto.setDateContrat(entity.getDateDebut());
         dto.setMontant(entity.getMontant());
+        dto.setTypeContrat(entity.getTypeContrat());
 
         if (entity.getReservation() != null) {
             dto.setReservationId(entity.getReservation().getId());
