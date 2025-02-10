@@ -15,9 +15,9 @@
                     <label class="form-label">Type de contrat</label>
                     <select class="form-control" id="typeContrat" name="typeContrat" th:field="*{typeContrat}" required>
                         <option value="" disabled selected>Choisir un type</option>
-                        <option th:each="type : ${T(com.gestion.immobiliere.Gimmobilere.constant.TypeContrat).values()}"
-                                th:value="${type}"
-                                th:text="${type}"></option>
+                        <option th:each="typec : ${T(com.gestion.immobiliere.Gimmobilere.constant.TypeContrat).values()}"
+                                th:value="${typec}"
+                                th:text="${typec}"></option>
                     </select>
                 </div>
                 <div class="mb-3">

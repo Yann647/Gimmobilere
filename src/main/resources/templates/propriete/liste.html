@@ -20,6 +20,9 @@
                                 <th>#</th>
                                 <th>Adresse</th>
                                 <th>Prix</th>
+                                <th>Type de propriete</th>
+                                <th>Description</th>
+                                <th>Disponibilite</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -28,6 +31,9 @@
                                 <td th:text="${propriete.id}"></td>
                                 <td th:text="${propriete.adresse}"></td>
                                 <td th:text="${propriete.prix}"></td>
+                                <td th:text="${propriete.typePropriete}"></td>
+                                <td th:text="${propriete.description}"></td>
+                                <td th:text="${propriete.disponible}"></td>
                                 <td>
                                     <a class="btn btn-primary" th:href="@{'/propriete/edit/'+${propriete.id}}">Modifier</a>
                                     <a class="btn btn-danger" th:href="@{'/propriete/supprimer/'+${propriete.id}}">Supprimer</a>
