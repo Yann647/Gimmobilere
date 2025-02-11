@@ -20,7 +20,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Type de propriete</label>
-                    <select class="form-control" id="type" name="type" th:field="*{type}" required>
+                    <select class="form-control" id="typePropriete" name="typePropriete" th:field="*{typePropriete}" required>
                         <option value="" disabled selected>Choisir un type</option>
                         <option th:each="typep : ${T(com.gestion.immobiliere.Gimmobilere.constant.TypePropriete).values()}"
                                 th:value="${typep}"

@@ -19,7 +19,7 @@ public class ProprieteMapper {
         entity.setAdresse(dto.getAdresse());
         entity.setPrix(dto.getPrix());
         entity.setDescription(dto.getDescription());
-        entity.setType(dto.getTypePropriete());
+        entity.setTypePropriete(dto.getTypePropriete());
         entity.setDisponible(dto.getDisponible());
 
         return entity;
@@ -34,7 +34,7 @@ public class ProprieteMapper {
         dto.setAdresse(entity.getAdresse());
         dto.setPrix(entity.getPrix());
         dto.setDescription(entity.getDescription());
-        dto.setTypePropriete(entity.getType());
+        dto.setTypePropriete(entity.getTypePropriete());
         dto.setDisponible(entity.getDisponible());
 
         return dto;

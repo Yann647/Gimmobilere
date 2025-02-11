@@ -13,7 +13,7 @@ public class Propriete {
     private double prix;
 
     @Enumerated(EnumType.STRING)
-    private TypePropriete type;
+    private TypePropriete typePropriete;
 
     private String description;
 
@@ -47,12 +47,12 @@ public class Propriete {
         this.prix = prix;
     }
 
-    public TypePropriete getType() {
-        return type;
+    public TypePropriete getTypePropriete() {
+        return typePropriete;
     }
 
-    public void setType(TypePropriete type) {
-        this.type = type;
+    public void setTypePropriete(TypePropriete typePropriete) {
+        this.typePropriete = typePropriete;
     }
 
     public String getDescription() {
