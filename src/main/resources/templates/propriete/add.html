@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}" >
+      layout:decorate="~{layout}">
 
 <div layout:fragment="content">
-
     <div class="card" style="width: 48rem;">
         <div class="card-header">
             Ajout d'une Propriété
         </div>
         <div class="card-body">
-            <form th:action="@{/propriete/save}" th:method="POST" th:object="${propriete}">
+            <form th:action="@{/propriete/save}" method="POST" th:object="${propriete}">
                 <div class="mb-3">
                     <label class="form-label">Adresse</label>
                     <input type="text" class="form-control" id="adresse" name="adresse" required>
@@ -21,9 +20,9 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Type de propriete</label>
-                    <select class="form-control" id="typePropriete" name="typePropriete" th:field="*{typePropriete}" required>
+                    <select class="form-control" id="type" name="type" th:field="*{type}" required>
                         <option value="" disabled selected>Choisir un type</option>
-                        <option th:each="typep : ${T(com.gestion.immobiliere.Gimmobilere.constant.TypePropriete.values()}"
+                        <option th:each="typep : ${T(com.gestion.immobiliere.Gimmobilere.constant.TypePropriete).values()}"
                                 th:value="${typep}"
                                 th:text="${typep}"></option>
                     </select>
@@ -36,7 +35,7 @@
                     <label class="form-label">Disponibilite</label>
                     <select class="form-control" id="disponible" name="disponible" th:field="*{disponible}" required>
                         <option value="" disabled selected>Choisir un type</option>
-                        <option th:each="disponibl : ${T(com.gestion.immobiliere.Gimmobilere.constant.Disponible.values()}"
+                        <option th:each="disponibl : ${T(com.gestion.immobiliere.Gimmobilere.constant.Disponible).values()}"
                                 th:value="${disponibl}"
                                 th:text="${disponibl}"></option>
                     </select>
@@ -46,6 +45,6 @@
             </form>
         </div>
     </div>
-
 </div>
+
 </html>
