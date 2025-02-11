@@ -27,7 +27,7 @@
                             <tr th:each="reservation : ${reservations}">
                                 <td th:text="${reservation.id}"></td>
                                 <td th:text="${reservation.date}"></td>
-                                <td th:text="${reservation.statut}"></td>
+                                <td th:text="${reservation.statutReservation}"></td>
                                 <td>
                                     <a class="btn btn-primary" th:href="@{'/reservation/edit/'+${reservation.id}}">Modifier</a>
                                     <a class="btn btn-danger" th:href="@{'/reservation/supprimer/'+${reservation.id}}">Supprimer</a>

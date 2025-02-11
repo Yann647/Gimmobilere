@@ -28,6 +28,19 @@
                                 th:text="${typep}"></option>
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Disponibilite</label>
+                    <select class="form-control" id="disponible" name="disponible" th:field="*{disponible}" required>
+                        <option value="" disabled selected>Choisir un type</option>
+                        <option th:each="disponibl : ${T(com.gestion.immobiliere.Gimmobilere.constant.Disponible.values()}"
+                                th:value="${disponibl}"
+                                th:text="${disponibl}"></option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Terminer</button>
                 <button type="reset" class="btn btn-secondary">Annuler</button>
             </form>
