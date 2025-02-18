@@ -21,6 +21,7 @@ public class Contrat {
     private Propriete propriete;
 
     @ManyToOne
+    @JoinColumn(name = "userId")
     private User user;
 
     @ManyToOne

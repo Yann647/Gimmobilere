@@ -14,6 +14,8 @@ public class ContratDTO {
     private Long reservationId;
     private Long userId;
 
+
+
     public long getId() {
         return id;
     }

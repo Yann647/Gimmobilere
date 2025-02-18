@@ -1,7 +1,10 @@
 package com.gestion.immobiliere.Gimmobilere.web.controller;
 
 import com.gestion.immobiliere.Gimmobilere.model.Contrat;
+import com.gestion.immobiliere.Gimmobilere.model.User;
 import com.gestion.immobiliere.Gimmobilere.repository.ContratRepository;
+import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ContratController {
 
     private final ContratRepository contratRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public ContratController(ContratRepository contratRepository) {
         this.contratRepository = contratRepository;
@@ -25,6 +31,7 @@ public class ContratController {
     @RequestMapping(value = "contrat/ajout")
     public String addContrat(Model model) {
         model.addAttribute("contrat", new Contrat());
+        model.addAttribute("users", userRepository.findAll());
         return "contrat/add";
     }
 
@@ -36,6 +43,7 @@ public class ContratController {
 
     @RequestMapping(value = "contrat/save", method = RequestMethod.POST)
     public String saveContrat(@ModelAttribute Contrat contrat) {
+        System.out.println("contrat " + contrat.getUser());
         contratRepository.save(contrat);
         return "redirect:/contrat/liste";
     }
