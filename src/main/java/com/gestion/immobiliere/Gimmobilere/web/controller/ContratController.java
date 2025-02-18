@@ -38,7 +38,7 @@ public class ContratController {
     @RequestMapping(value = "contrat/edit/{id}")
     public String editContrat(@PathVariable long id, Model model) {
         model.addAttribute("contrat", contratRepository.findById(id).orElse(null));
-        return "contrat/edit";
+        return "contrat/edite";
     }
 
     @RequestMapping(value = "contrat/save", method = RequestMethod.POST)

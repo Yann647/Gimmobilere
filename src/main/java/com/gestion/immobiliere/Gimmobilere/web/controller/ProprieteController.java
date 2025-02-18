@@ -31,7 +31,7 @@ public class ProprieteController {
     @RequestMapping(value = "propriete/edit/{id}")
     public String editPropriete(@PathVariable long id, Model model) {
         model.addAttribute("propriete", proprieteRepository.findById(id).orElse(null));
-        return "propriete/edit";
+        return "propriete/edite";
     }
 
     @RequestMapping(value = "propriete/save", method = RequestMethod.POST)

@@ -31,7 +31,7 @@ public class ReservationController {
     @RequestMapping(value = "reservation/edit/{id}")
     public String editReservation(@PathVariable long id, Model model) {
         model.addAttribute("reservation", reservationRepository.findById(id).orElse(null));
-        return "reservation/edit";
+        return "reservation/edite";
     }
 
     @RequestMapping(value = "reservation/save", method = RequestMethod.POST)

@@ -31,7 +31,7 @@ public class UserController {
     @RequestMapping(value = "user/edit/{id}")
     public String editUser(@PathVariable long id, Model model) {
         model.addAttribute("user", userRepository.findById(id).orElse(null));
-        return "user/edit";
+        return "user/edite";
     }
 
     @RequestMapping(value = "user/save", method = RequestMethod.POST)
