@@ -3,7 +3,6 @@ package com.gestion.immobiliere.Gimmobilere.service.DTO;
 import com.gestion.immobiliere.Gimmobilere.constant.TypeContrat;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class ContratDTO {
 

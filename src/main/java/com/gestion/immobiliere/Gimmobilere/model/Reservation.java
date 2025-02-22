@@ -2,15 +2,17 @@ package com.gestion.immobiliere.Gimmobilere.model;
 
 import com.gestion.immobiliere.Gimmobilere.constant.StatutReservation;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date dateReservation;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateReservation;
 
     @Enumerated(EnumType.STRING)
     private StatutReservation statutReservation;
@@ -29,11 +31,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public Date getDateReservation() {
+    public LocalDate getDateReservation() {
         return dateReservation;
     }
 
-    public void setDateReservation(Date dateReservation) {
+    public void setDateReservation(LocalDate dateReservation) {
         this.dateReservation = dateReservation;
     }
 

@@ -3,14 +3,13 @@ package com.gestion.immobiliere.Gimmobilere.service.DTO;
 import com.gestion.immobiliere.Gimmobilere.constant.StatutReservation;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class ReservationDTO {
 
     private long id;
-    private Date dateReservation;
-    private Date dateDebut;
-    private Date dateFin;
+    private LocalDate dateReservation;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
     private StatutReservation statutReservation;
     private Long proprieteId;
     private String proprieteAdresse;
@@ -25,27 +24,27 @@ public class ReservationDTO {
         this.id = id;
     }
 
-    public Date getDateReservation() {
+    public LocalDate getDateReservation() {
         return dateReservation;
     }
 
-    public void setDateReservation(Date dateReservation) {
+    public void setDateReservation(LocalDate dateReservation) {
         this.dateReservation = dateReservation;
     }
 
-    public Date getDateDebut() {
+    public LocalDate getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 
