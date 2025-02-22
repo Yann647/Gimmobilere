@@ -2,7 +2,9 @@ package com.gestion.immobiliere.Gimmobilere.model;
 
 import com.gestion.immobiliere.Gimmobilere.constant.TypeContrat;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -10,8 +12,10 @@ public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date dateDebut;
-    private Date dateFin;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateDebut;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateFin;
     private Double montant;
 
     @Enumerated(EnumType.STRING)
@@ -35,19 +39,19 @@ public class Contrat {
         this.id = id;
     }
 
-    public Date getDateDebut() {
+    public LocalDate getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 

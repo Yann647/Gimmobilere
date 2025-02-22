@@ -8,7 +8,7 @@ import java.util.Date;
 public class ContratDTO {
 
     private long id;
-    private Date dateContrat;
+    private LocalDate dateContrat;
     private double montant;
     private TypeContrat typeContrat;
     private Long reservationId;
@@ -24,11 +24,11 @@ public class ContratDTO {
         this.id = id;
     }
 
-    public Date getDateContrat() {
+    public LocalDate getDateContrat() {
         return dateContrat;
     }
 
-    public void setDateContrat(Date dateContrat) {
+    public void setDateContrat(LocalDate dateContrat) {
         this.dateContrat = dateContrat;
     }
 

@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
+
 @Controller
 public class ContratController {
 
@@ -38,12 +40,12 @@ public class ContratController {
     @RequestMapping(value = "contrat/edit/{id}")
     public String editContrat(@PathVariable long id, Model model) {
         model.addAttribute("contrat", contratRepository.findById(id).orElse(null));
+        model.addAttribute("users", userRepository.findAll());
         return "contrat/edite";
     }
 
     @RequestMapping(value = "contrat/save", method = RequestMethod.POST)
     public String saveContrat(@ModelAttribute Contrat contrat) {
-        System.out.println("contrat " + contrat.getUser());
         contratRepository.save(contrat);
         return "redirect:/contrat/liste";
     }
