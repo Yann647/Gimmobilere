@@ -13,7 +13,11 @@
             <form th:action="@{/reservation/save}" th:method="POST" th:object="${reservation}">
                 <div class="mb-3">
                     <label class="form-label">Date de réservation</label>
-                    <input type="date" class="form-control" id="date" name="date" required>
+                    <input type="date" class="form-control" id="dateReservation" name="dateReservation" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Date debut</label>
+                    <input type="date" class="form-control" id="dateDebut" name="dateDebut" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Statut</label>
@@ -23,6 +27,14 @@
                                 th:value="${statutr}"
                                 th:text="${statutr}"></option>
                     </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" name="adresse" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nom du Client</label>
+                    <input type="text" class="form-control" id="nomClient" name="nomClient" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Terminer</button>
                 <button type="reset" class="btn btn-secondary">Annuler</button>

@@ -18,16 +18,22 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Date</th>
+                                <th>Date de reservation</th>
+                                <th>Date debut</th>
                                 <th>Statut</th>
+                                <th>Adresse</th>
+                                <th>nom du client</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="reservation : ${reservations}">
                                 <td th:text="${reservation.id}"></td>
-                                <td th:text="${reservation.date}"></td>
+                                <td th:text="${reservation.dateReservation}"></td>
+                                <td th:text="${reservation.dateDebut}"></td>
                                 <td th:text="${reservation.statutReservation}"></td>
+                                <td th:text="${reservation.adresse}"></td>
+                                <td th:text="${reservation.nomClient}"></td>
                                 <td>
                                     <a class="btn btn-primary" th:href="@{'/reservation/edit/'+${reservation.id}}">Modifier</a>
                                     <a class="btn btn-danger" th:href="@{'/reservation/supprimer/'+${reservation.id}}">Supprimer</a>

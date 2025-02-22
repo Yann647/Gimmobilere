@@ -15,12 +15,32 @@
 
                 <div class="mb-3">
                     <label class="form-label">Date de réservation</label>
-                    <input type="date" class="form-control" id="date" th:value="${reservation.date}" name="date" required>
+                    <input type="date" class="form-control" id="dateReservation" th:value="${reservation.dateReservation}" name="dateReservation" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Date debut</label>
+                    <input type="date" class="form-control" id="dateDebut" th:value="${reservation.dateDebut}" name="dateDebut" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Statut</label>
-                    <input type="text" class="form-control" id="statut" th:value="${reservation.statut}" name="statut" required>
+                    <select class="form-control" id="statutReservation" name="statutReservation" th:field="*{statutReservation}" required>
+                        <option value="" disabled selected>Choisir un type</option>
+                        <option th:each="statutr : ${T(com.gestion.immobiliere.Gimmobilere.constant.StatutReservation).values()}"
+                                th:value="${statutr}"
+                                th:text="${statutr}"></option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" th:value="${reservation.adresse}" name="adresse" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nom du client</label>
+                    <input type="text" class="form-control" id="nomClient" th:value="${reservation.nomClient}" name="nomClient" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Terminer</button>

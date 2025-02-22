@@ -1,7 +1,6 @@
 package com.gestion.immobiliere.Gimmobilere.web.controller;
 
 import com.gestion.immobiliere.Gimmobilere.model.Contrat;
-import com.gestion.immobiliere.Gimmobilere.model.User;
 import com.gestion.immobiliere.Gimmobilere.repository.ContratRepository;
 import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
