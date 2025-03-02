@@ -23,8 +23,9 @@ public class LoginController {
     @PostMapping("/login")
     public String login(User user, Model model) {
         User loggedInUser = userRepository.findByLoginAndPassword(user.getLogin(),user.getPassword());
+        System.out.println("use" + loggedInUser.toString());
         if (loggedInUser != null) {
-            return "redirect:/dashboard";
+            return "redirect:/";
         } else {
             model.addAttribute("error", "Identifiants invalides");
             return "login";

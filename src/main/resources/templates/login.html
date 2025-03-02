@@ -12,8 +12,8 @@
 
 <form th:action="@{/login}" method="post">
     <div>
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required>
+        <label for="login">Nom d'utilisateur :</label>
+        <input type="text" id="login" name="login" required>
     </div>
 
     <div>
@@ -30,7 +30,7 @@
     </div>
 </form>
 
-<p>Pas encore de compte ? <a th:href="@{/user/ajout}">Inscrivez-vous ici</a></p>
+<p>Pas encore de compte ? <a th:href="@{/inscription}">Inscrivez-vous ici</a></p>
 
 </body>
 </html>
