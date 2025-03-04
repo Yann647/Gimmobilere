@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Gestion Immobilière</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<div layout:fragment="content">
 <h2>Connexion</h2>
 
 <form th:action="@{/login}" method="post">
@@ -31,6 +26,7 @@
 </form>
 
 <p>Pas encore de compte ? <a th:href="@{/inscription}">Inscrivez-vous ici</a></p>
+<p><a th:href="@{/}">retour a accueil</a></p>
 
-</body>
+</div>
 </html>

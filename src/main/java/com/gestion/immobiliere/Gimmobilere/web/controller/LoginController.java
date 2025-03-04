@@ -2,6 +2,7 @@ package com.gestion.immobiliere.Gimmobilere.web.controller;
 
 import com.gestion.immobiliere.Gimmobilere.model.User;
 import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,15 +22,23 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(User user, Model model) {
+    public String login(User user, Model model, HttpSession session) {
         User loggedInUser = userRepository.findByLoginAndPassword(user.getLogin(),user.getPassword());
         System.out.println("use" + loggedInUser.toString());
         if (loggedInUser != null) {
+            session.setAttribute("user",loggedInUser);
             return "redirect:/";
         } else {
             model.addAttribute("error", "Identifiants invalides");
             return "login";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        // Clear the session
+        session.invalidate();
+        return "redirect:/login";
     }
 
 }
