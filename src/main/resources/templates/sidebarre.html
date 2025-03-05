@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <nav class="sidebar-nav">
     <ul id="sidebarnav">
+        <!-- Common for all users -->
         <li class="sidebar-item">
             <a class="sidebar-link sidebar-link" th:href="@{/}" aria-expanded="false">
                 <i data-feather="home" class="feather-icon"></i>
@@ -8,38 +10,54 @@
             </a>
         </li>
         <li class="list-divider"></li>
-        <li class="nav-small-cap"><span class="hide-menu">Gestion</span></li>
 
-        <li class="sidebar-item">
+        <!-- Management section - visible for ADMIN and AGENT -->
+        <li class="nav-small-cap" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                          session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+            <span class="hide-menu">Gestion</span>
+        </li>
+
+        <!-- Contracts - visible for ADMIN and AGENT -->
+        <li class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
             <a class="sidebar-link" th:href="@{/contrat/liste}" aria-expanded="false">
                 <i data-feather="file-text" class="feather-icon"></i>
                 <span class="hide-menu">Contrats</span>
             </a>
         </li>
-        <li class="sidebar-item">
-            <a class="sidebar-link sidebar-link" th:href="@{/propriete/liste}" aria-expanded="false">
+
+        <!-- Properties - visible for all users but with different links -->
+        <li class="sidebar-item" th:if="${session.user != null}">
+            <a class="sidebar-link sidebar-link"
+               th:href="${session.user.role == 'CLIENT'} ?
+                        @{/propriete/liste} : @{/propriete/liste}"
+               aria-expanded="false">
                 <i data-feather="home" class="feather-icon"></i>
                 <span class="hide-menu">Propriétés</span>
             </a>
         </li>
-        <li class="sidebar-item">
+
+        <!-- Reservations - visible for all logged in users -->
+        <li class="sidebar-item" th:if="${session.user != null}">
             <a class="sidebar-link sidebar-link" th:href="@{/reservation/liste}" aria-expanded="false">
                 <i data-feather="calendar" class="feather-icon"></i>
                 <span class="hide-menu">Réservations</span>
             </a>
         </li>
-        <li class="sidebar-item">
+
+        <!-- Users - visible only for ADMIN -->
+        <li class="sidebar-item" th:if="${session.user != null && session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN}">
             <a class="sidebar-link sidebar-link" th:href="@{/user/liste}" aria-expanded="false">
                 <i data-feather="users" class="feather-icon"></i>
                 <span class="hide-menu">Utilisateurs</span>
             </a>
         </li>
 
-        <li class="list-divider"></li>
+        <li class="list-divider" th:if="${session.user != null}"></li>
+        <li class="nav-small-cap" th:if="${session.user != null}"><span class="hide-menu">Extra</span></li>
 
-        <li class="nav-small-cap"><span class="hide-menu">Extra</span></li>
-
-        <li class="sidebar-item">
+        <!-- Logout - visible for all logged in users -->
+        <li class="sidebar-item" th:if="${session.user != null}">
             <a class="sidebar-link sidebar-link" th:href="@{/logout}" aria-expanded="false">
                 <i data-feather="log-out" class="feather-icon"></i>
                 <span class="hide-menu">Déconnexion</span>
