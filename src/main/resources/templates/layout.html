@@ -116,11 +116,11 @@
           <!-- ============================================================== -->
           <!-- User profile and search -->
           <!-- ============================================================== -->
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" th:if="${session.user != null}">
             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
-              <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                      class="text-dark" th:text="${session.user != null ? session.user.login : 'Guest'}"></span> <i data-feather="chevron-down"
+              <span class="ml-2 d-none d-lg-inline-block"><span>Bonjour,</span> <span
+                      class="text-dark" th:text="${session.user != null ? session.user.login : 'Inviter'}"></span> <i data-feather="chevron-down"
                                                             class="svg-icon"></i></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">

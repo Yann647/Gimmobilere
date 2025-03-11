@@ -8,7 +8,8 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
                     <a th:href="@{/reservation/ajout}" class="btn btn-primary">Ajouter une Réservation</a>
                 </div>
                 <div class="card-body">
@@ -23,7 +24,9 @@
                                 <th>Statut</th>
                                 <th>Adresse</th>
                                 <th>nom du client</th>
-                                <th>Action</th>
+                                <th class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+                                    Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,7 +37,8 @@
                                 <td th:text="${reservation.statutReservation}"></td>
                                 <td th:text="${reservation.adresse}"></td>
                                 <td th:text="${reservation.user.nom + ' ' + reservation.user.prenom}"></td>
-                                <td>
+                                <td class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
                                     <a class="btn btn-primary" th:href="@{'/reservation/edit/'+${reservation.id}}">Modifier</a>
                                     <a class="btn btn-danger" th:href="@{'/reservation/supprimer/'+${reservation.id}}">Supprimer</a>
                                 </td>

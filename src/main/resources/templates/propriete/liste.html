@@ -8,7 +8,8 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
                     <a th:href="@{/propriete/ajout}" class="btn btn-primary">Ajouter une Propriété</a>
                 </div>
                 <div class="card-body">
@@ -23,7 +24,9 @@
                                 <th>Type de propriete</th>
                                 <th>Description</th>
                                 <th>Disponibilite</th>
-                                <th>Action</th>
+                                <th class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+                                    Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,7 +37,8 @@
                                 <td th:text="${propriete.typePropriete}"></td>
                                 <td th:text="${propriete.description}"></td>
                                 <td th:text="${propriete.disponible}"></td>
-                                <td>
+                                <td class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
                                     <a class="btn btn-primary" th:href="@{'/propriete/edit/'+${propriete.id}}">Modifier</a>
                                     <a class="btn btn-danger" th:href="@{'/propriete/supprimer/'+${propriete.id}}">Supprimer</a>
                                 </td>
