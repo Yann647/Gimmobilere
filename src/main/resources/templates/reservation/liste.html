@@ -33,7 +33,7 @@
                                 <td th:text="${reservation.dateDebut}"></td>
                                 <td th:text="${reservation.statutReservation}"></td>
                                 <td th:text="${reservation.adresse}"></td>
-                                <td th:text="${reservation.nomClient}"></td>
+                                <td th:text="${reservation.user.nom + ' ' + reservation.user.prenom}"></td>
                                 <td>
                                     <a class="btn btn-primary" th:href="@{'/reservation/edit/'+${reservation.id}}">Modifier</a>
                                     <a class="btn btn-danger" th:href="@{'/reservation/supprimer/'+${reservation.id}}">Supprimer</a>

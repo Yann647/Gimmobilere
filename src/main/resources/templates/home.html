@@ -14,10 +14,17 @@
     <h1>Accueil - Gestion Immobilière</h1>
     <div>
         <ul>
-            <li><a th:href="@{/contrat/liste}">Gérer les contrats</a></li>
+            <li class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+                <a th:href="@{/contrat/liste}">Gérer les contrats</a>
+            </li>
             <li><a th:href="@{/propriete/liste}">Gérer les propriétés</a></li>
-            <li><a th:href="@{/reservation/liste}">Gérer les réservations</a></li>
-            <li sec:authorize="hasAuthority('ADMIN')">
+            <li class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+                <a th:href="@{/reservation/liste}">Gérer les réservations</a>
+            </li>
+            <li class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
                 <a th:href="@{/user/liste}">Gérer les utilisateurs</a>
             </li>
             <li><a th:href="@{/inscription}">S'inscrire</a></li>
