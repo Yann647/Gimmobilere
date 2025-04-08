@@ -21,8 +21,7 @@
             <li class="sidebar-item" th:if="${session.user != null}">
                 <a th:href="@{/reservation/liste}">Gérer les réservations</a>
             </li>
-            <li class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+            <li class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN)}">
                 <a th:href="@{/user/liste}">Gérer les utilisateurs</a>
             </li>
             <li class="sidebar-item" th:if="${session.user == null}">
