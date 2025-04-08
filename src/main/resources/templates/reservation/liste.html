@@ -33,7 +33,7 @@
                                 <td th:text="${reservation.id}"></td>
                                 <td th:text="${reservation.dateReservation}"></td>
                                 <td th:text="${reservation.statutReservation}"></td>
-                                <td th:text="${reservation.adresse}"></td>
+                                <td th:text="${reservation.propriete}"></td>
                                 <td th:text="${reservation.user.nom + ' ' + reservation.user.prenom}"></td>
                                 <td class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
                                          session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">

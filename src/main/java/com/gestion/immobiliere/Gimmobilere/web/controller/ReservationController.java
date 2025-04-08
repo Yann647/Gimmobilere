@@ -1,6 +1,7 @@
 package com.gestion.immobiliere.Gimmobilere.web.controller;
 
 import com.gestion.immobiliere.Gimmobilere.model.Reservation;
+import com.gestion.immobiliere.Gimmobilere.repository.ProprieteRepository;
 import com.gestion.immobiliere.Gimmobilere.repository.ReservationRepository;
 import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class ReservationController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProprieteRepository proprieteRepository;
+
     public ReservationController(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
@@ -31,6 +35,7 @@ public class ReservationController {
     public String addReservation(Model model) {
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("proprietes", proprieteRepository.findAll());
         return "reservation/add";
     }
 
