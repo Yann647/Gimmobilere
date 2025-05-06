@@ -44,7 +44,7 @@ public class Reservation {
     }
 
     public void setStatutReservation(com.gestion.immobiliere.Gimmobilere.constant.StatutReservation statutReservation) {
-        statutReservation = statutReservation;
+        this.statutReservation = statutReservation;
     }
 
     public Propriete getPropriete() {

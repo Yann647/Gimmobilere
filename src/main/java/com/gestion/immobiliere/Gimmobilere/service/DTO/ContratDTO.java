@@ -10,8 +10,11 @@ public class ContratDTO {
     private LocalDate dateContrat;
     private double montant;
     private TypeContrat typeContrat;
+    private Long proprieteId;
+    private String proprieteAdresse;
     private Long reservationId;
     private Long userId;
+    private String userNom;
 
 
 
@@ -47,6 +50,22 @@ public class ContratDTO {
         this.typeContrat = typeContrat;
     }
 
+    public Long getProprieteId() {
+        return proprieteId;
+    }
+
+    public void setProprieteId(Long proprieteId) {
+        this.proprieteId = proprieteId;
+    }
+
+    public String getProprieteAdresse() {
+        return proprieteAdresse;
+    }
+
+    public void setProprieteAdresse(String proprieteAdresse) {
+        this.proprieteAdresse = proprieteAdresse;
+    }
+
     public Long getReservationId() {
         return reservationId;
     }
@@ -61,5 +80,13 @@ public class ContratDTO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserNom() {
+        return userNom;
+    }
+
+    public void setUserNom(String userNom) {
+        this.userNom = userNom;
     }
 }

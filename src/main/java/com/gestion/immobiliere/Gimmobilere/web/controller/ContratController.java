@@ -2,6 +2,8 @@ package com.gestion.immobiliere.Gimmobilere.web.controller;
 
 import com.gestion.immobiliere.Gimmobilere.model.Contrat;
 import com.gestion.immobiliere.Gimmobilere.repository.ContratRepository;
+import com.gestion.immobiliere.Gimmobilere.repository.ProprieteRepository;
+import com.gestion.immobiliere.Gimmobilere.repository.ReservationRepository;
 import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,12 @@ import java.text.SimpleDateFormat;
 public class ContratController {
 
     private final ContratRepository contratRepository;
+
+    @Autowired
+    private ProprieteRepository proprieteRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -32,6 +40,8 @@ public class ContratController {
     @RequestMapping(value = "contrat/ajout")
     public String addContrat(Model model) {
         model.addAttribute("contrat", new Contrat());
+        model.addAttribute("propriete", proprieteRepository.findAll());
+        model.addAttribute("reservation", reservationRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         return "contrat/add";
     }
@@ -39,6 +49,8 @@ public class ContratController {
     @RequestMapping(value = "contrat/edit/{id}")
     public String editContrat(@PathVariable long id, Model model) {
         model.addAttribute("contrat", contratRepository.findById(id).orElse(null));
+        model.addAttribute("propriete", proprieteRepository.findAll());
+        model.addAttribute("reservation", reservationRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         return "contrat/edite";
     }

@@ -1,6 +1,7 @@
 package com.gestion.immobiliere.Gimmobilere.service.Mapper;
 
 import com.gestion.immobiliere.Gimmobilere.model.Contrat;
+import com.gestion.immobiliere.Gimmobilere.model.Propriete;
 import com.gestion.immobiliere.Gimmobilere.model.Reservation;
 import com.gestion.immobiliere.Gimmobilere.model.User;
 import com.gestion.immobiliere.Gimmobilere.service.DTO.ContratDTO;
@@ -21,6 +22,12 @@ public class ContratMapper {
         entity.setDateDebut(dto.getDateContrat());
         entity.setMontant(dto.getMontant());
         entity.setTypeContrat(dto.getTypeContrat());
+
+        if (dto.getProprieteId() != null) {
+            Propriete propriete = new Propriete();
+            propriete.setId(dto.getProprieteId());
+            entity.setPropriete(propriete);
+        }
 
         if (dto.getReservationId() != null) {
             Reservation reservation = new Reservation();
@@ -48,12 +55,18 @@ public class ContratMapper {
         dto.setMontant(entity.getMontant());
         dto.setTypeContrat(entity.getTypeContrat());
 
+        if (entity.getPropriete() != null) {
+            dto.setProprieteId(entity.getPropriete().getId());
+            dto.setProprieteAdresse(entity.getPropriete().getAdresse());
+        }
+
         if (entity.getReservation() != null) {
             dto.setReservationId(entity.getReservation().getId());
         }
 
         if (entity.getUser() != null) {
             dto.setUserId(entity.getUser().getId());
+            dto.setUserNom(entity.getUser().getNom());
         }
 
         return dto;

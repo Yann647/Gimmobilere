@@ -10,7 +10,7 @@
             Ajout d'une Réservation
         </div>
         <div class="card-body">
-            <form th:action="@{/reservation/save}" th:method="POST" th:object="${reservation}">
+            <form th:action="@{/reservation/save}" method="POST" th:object="${reservation}">
                 <div class="mb-3">
                     <label class="form-label">Date de réservation</label>
                     <input type="date" class="form-control" id="dateReservation" name="dateReservation" required>

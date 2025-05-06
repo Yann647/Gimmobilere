@@ -33,7 +33,7 @@
                                 <td th:text="${contrat.typeContrat}"></td>
                                 <td th:text="${contrat.dateDebut}"></td>
                                 <td th:text="${contrat.montant}"></td>
-                                <td th:text="${contrat.propriete}"></td>
+                                <td th:text="${contrat.propriete.adresse}"></td>
                                 <td th:text="${contrat.user.nom + ' ' + contrat.user.prenom}"></td>
                                 <td>
                                     <a class="btn btn-primary" th:href="@{'/contrat/edit/'+${contrat.id}}">Modifier</a>
