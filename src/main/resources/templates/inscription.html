@@ -1,45 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}" >
-
-<div layout:fragment="content">
-
-    <div class="card" style="width: 48rem;">
+      layout:decorate="~{layout}">
+<body style="font-family: Arial, sans-serif; background: #f3f3f3; margin: 0; padding: 0;">
+<div layout:fragment="content" style="max-width: 500px; margin: 40px auto; background: white; padding: 30px;
+                                    border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <div class="card">
         <div class="card-header">
-            Inscription
+            <h2 style="text-align: center; margin-bottom: 25px;">Inscription</h2>
         </div>
         <div class="card-body">
-            <form th:action="@{/inscription}" th:method="POST" th:object="${user}">
-                <div class="mb-3">
-                    <label class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="nom" name="nom" required>
+            <form th:action="@{/inscription}" method="post">
+                <div style="margin-bottom: 15px;">
+                    <label for="nom" style="display: block; margin-bottom: 5px;">Nom :</label>
+                    <input type="text" id="nom" name="nom" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                                  border-radius: 5px; box-sizing: border-box;">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Prenom</label>
-                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="prenom" style="display: block; margin-bottom: 5px;">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                                  border-radius: 5px; box-sizing: border-box;">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Telephone</label>
-                    <input type="number" class="form-control" id="telephone" name="telephone" required>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="telephone" style="display: block; margin-bottom: 5px;">Téléphone :</label>
+                    <input type="number" id="telephone" name="telephone" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                                  border-radius: 5px; box-sizing: border-box;">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="email" style="display: block; margin-bottom: 5px;">Email :</label>
+                    <input type="email" id="email" name="email" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                                  border-radius: 5px; box-sizing: border-box;">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Login</label>
-                    <input type="text" class="form-control" id="login" name="login" required>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="login" style="display: block; margin-bottom: 5px;">Login :</label>
+                    <input type="text" id="login" name="login" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                                  border-radius: 5px; box-sizing: border-box;">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+
+                <div style="margin-bottom: 20px;">
+                    <label for="password" style="display: block; margin-bottom: 5px;">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                                  border-radius: 5px; box-sizing: border-box;">
                 </div>
-                <button type="submit" class="btn btn-primary">Inscrire</button>
-                <button type="reset" class="btn btn-secondary">Annuler</button>
+
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit"
+                            style="flex: 1; padding: 12px; background: #4CAF50; color: white;
+                                   border: none; border-radius: 5px; cursor: pointer;
+                                   font-size: 16px;">
+                        Inscrire
+                    </button>
+                    <button type="reset"
+                            style="flex: 1; padding: 12px; background: #6c757d; color: white;
+                                   border: none; border-radius: 5px; cursor: pointer;
+                                   font-size: 16px;">
+                        Annuler
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 
+    <p style="text-align: center; margin-top: 20px;">
+        Déjà un compte ?
+        <a th:href="@{/login}" style="color: #007bff; text-decoration: none;">Connectez-vous ici</a>
+    </p>
+
+    <p style="text-align: center;">
+        <a th:href="@{/}" style="color: #007bff; text-decoration: none;">Retour à l'accueil</a>
+    </p>
+
 </div>
+</body>
 </html>
