@@ -35,7 +35,7 @@
                         <option value="" disabled selected>Choisir une adresse</option>
                         <option th:each="adresse : ${proprietes}"
                                 th:value="${adresse.id}"
-                                th:text="${adresse}"></option>
+                                th:text="${adresse.adresse}"></option>
                     </select>
                 </div>
 
