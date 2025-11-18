@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Mon Profil</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Informations de l'utilisateur -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Nom :</strong>
+                            <p th:text="${user.nom}" class="form-control-plaintext"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Prénom :</strong>
+                            <p th:text="${user.prenom}" class="form-control-plaintext"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Email :</strong>
+                            <p th:text="${user.email}" class="form-control-plaintext"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Téléphone :</strong>
+                            <p th:text="${user.telephone}" class="form-control-plaintext"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Login :</strong>
+                            <p th:text="${user.login}" class="form-control-plaintext"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Rôle :</strong>
+                            <p th:text="${user.role}" class="form-control-plaintext"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
