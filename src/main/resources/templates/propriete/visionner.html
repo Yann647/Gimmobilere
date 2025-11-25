@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Détails de la Propriété</h4>
+                </div>
+                <div class="card-body">
+                    <div th:if="${propriete != null}">
+                        <p><strong>ID : </strong> <span th:text="${propriete.id}"></span></p>
+                        <p><strong>Adresse : </strong> <span th:text="${propriete.adresse}"></span></p>
+                        <p><strong>Prix : </strong> <span th:text="${propriete.prix}"></span> €</p>
+                        <p><strong>Type de propriété : </strong> <span th:text="${propriete.typePropriete}"></span></p>
+                        <p><strong>Description : </strong> <span th:text="${propriete.description}"></span></p>
+                        <p><strong>Disponibilité : </strong> <span th:text="${propriete.disponible}"></span></p>
+                        <p th:if="${propriete.proprietaire != null}">
+                            <strong>Propriétaire : </strong>
+                            <span th:text="${propriete.proprietaire.nom}"></span>
+                        </p>
+                    </div>
+                    <a th:href="@{/propriete/liste}" class="btn btn-secondary">Retour à la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

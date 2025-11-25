@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<div layout:fragment="content">
+    <!-- Section des cartes de statistiques - Visible seulement pour ADMIN et AGENT  -->
+    <div class="row mb-4" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN || session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Propriétés</h5>
+                    <h2 class="card-text" th:text="${totalProperties}">0</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Utilisateurs</h5>
+                    <h2 class="card-text" th:text="${totalUsers}">0</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Contrats</h5>
+                    <h2 class="card-text" th:text="${totalContrats}">0</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Ventes</h5>
+                    <h2 class="card-text" th:text="${totalSales}">0</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Message pour les utilisateurs non autorisés -->
+    <div th:if="${session.user != null && (session.user.role != T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN && session.user.role != T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+        <div class="alert alert-info text-center">
+            <h4>Bienvenue sur votre espace personnel</h4>
+        </div>
+    </div>
+</div>
+
+</html>

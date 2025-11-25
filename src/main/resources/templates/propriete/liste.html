@@ -24,9 +24,7 @@
                                 <th>Type de propriete</th>
                                 <th>Description</th>
                                 <th>Disponibilite</th>
-                                <th class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
-                                    Action</th>
+                                <th th:if="${session.user != null}">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -37,10 +35,16 @@
                                 <td th:text="${propriete.typePropriete}"></td>
                                 <td th:text="${propriete.description}"></td>
                                 <td th:text="${propriete.disponible}"></td>
-                                <td class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
-                                    <a class="btn btn-primary" th:href="@{'/propriete/edit/'+${propriete.id}}">Modifier</a>
-                                    <a class="btn btn-danger" th:href="@{'/propriete/supprimer/'+${propriete.id}}">Supprimer</a>
+                                <td th:if="${session.user != null}">
+                                    <!-- Bouton Visualiser pour tous les utilisateurs connectés -->
+                                    <a class="btn btn-info btn-sm" th:href="@{'/propriete/visionner/'+${propriete.id}}">Visualiser</a>
+
+                                    <!-- Boutons Modifier/Supprimer seulement pour ADMIN et AGENT -->
+                                    <span th:if="${session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
+                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT}">
+                                        <a class="btn btn-primary btn-sm" th:href="@{'/propriete/edit/'+${propriete.id}}">Modifier</a>
+                                        <a class="btn btn-danger btn-sm" th:href="@{'/propriete/supprimer/'+${propriete.id}}">Supprimer</a>
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>

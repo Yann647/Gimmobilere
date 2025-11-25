@@ -59,4 +59,14 @@ public class ProprieteController {
         return "redirect:/propriete/liste";
     }
 
+    @RequestMapping(value = "propriete/visionner/{id}")
+    public String visionnerPropriete(@PathVariable long id, Model model) {
+        Propriete propriete = proprieteRepository.findById(id).orElse(null);
+        if (propriete == null) {
+            return "redirect:/propriete/liste";
+        }
+        model.addAttribute("propriete", propriete);
+        return "propriete/visionner";
+    }
+
 }
