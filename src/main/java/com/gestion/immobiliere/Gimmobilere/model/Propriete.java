@@ -11,6 +11,7 @@ public class Propriete {
     private long id;
     private String adresse;
     private double prix;
+    private String imagePath; // chemin de l'image
 
     @Enumerated(EnumType.STRING)
     private TypePropriete typePropriete;
@@ -45,6 +46,14 @@ public class Propriete {
 
     public void setPrix(double prix) {
         this.prix = prix;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public TypePropriete getTypePropriete() {

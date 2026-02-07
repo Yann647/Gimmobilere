@@ -8,11 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class ProprieteController {
 
     private final ProprieteRepository proprieteRepository;
+    private final String UPLOAD_DIR = "uploads/";
 
     @Autowired
     private UserRepository userRepository;
@@ -42,13 +50,40 @@ public class ProprieteController {
     }
 
     @RequestMapping(value = "propriete/save", method = RequestMethod.POST)
-    public String savePropriete(@ModelAttribute Propriete propriete) {
+    public String savePropriete(@ModelAttribute Propriete propriete,
+                                @RequestParam(value = "image", required = false) MultipartFile image)
+            throws IOException {
+        // Gestion de l'upload d'image
+        if (image != null && !image.isEmpty()) {
+            String imagePath = uploadImage(image);
+            propriete.setImagePath(imagePath);
+        }
         proprieteRepository.save(propriete);
         return "redirect:/propriete/liste";
     }
 
     @RequestMapping(value = "propriete/update", method = RequestMethod.POST)
-    public String updatePropriete(@ModelAttribute Propriete propriete) {
+    public String updatePropriete(@ModelAttribute Propriete propriete,
+                                  @RequestParam(value = "image", required = false) MultipartFile image,
+                                  @RequestParam(value = "supprimerImage", defaultValue = "false") boolean supprimerImage)
+            throws IOException {
+        // Si une nouvelle image est fournie, l'uploader
+        if (image != null && !image.isEmpty()) {
+            String imagePath = uploadImage(image);
+            propriete.setImagePath(imagePath);
+        } else {
+            if (supprimerImage) {
+                propriete.setImagePath(null);
+            } else {
+                // Si pas de nouvelle image, conserver l'ancienne imagePath
+                // Récupérer la propriété existante pour garder son image
+                Propriete existingPropriete = proprieteRepository.findById(propriete.getId()).orElse(null);
+                if (existingPropriete != null && existingPropriete.getImagePath() != null) {
+                    propriete.setImagePath(existingPropriete.getImagePath());
+                }
+            }
+        }
+
         proprieteRepository.save(propriete);
         return "redirect:/propriete/liste";
     }
@@ -67,6 +102,19 @@ public class ProprieteController {
         }
         model.addAttribute("propriete", propriete);
         return "propriete/visionner";
+    }
+
+    private String uploadImage(MultipartFile image) throws IOException {
+        File uploadDir = new File(UPLOAD_DIR);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
+        Path filePath = Paths.get(UPLOAD_DIR + fileName);
+        Files.write(filePath, image.getBytes());
+
+        return fileName;
     }
 
 }

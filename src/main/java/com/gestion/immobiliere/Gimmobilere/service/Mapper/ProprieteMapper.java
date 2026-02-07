@@ -21,6 +21,7 @@ public class ProprieteMapper {
         entity.setDescription(dto.getDescription());
         entity.setTypePropriete(dto.getTypePropriete());
         entity.setDisponible(dto.getDisponible());
+        entity.setImagePath(dto.getImagePath());
 
         return entity;
 
@@ -36,6 +37,7 @@ public class ProprieteMapper {
         dto.setDescription(entity.getDescription());
         dto.setTypePropriete(entity.getTypePropriete());
         dto.setDisponible(entity.getDisponible());
+        dto.setImagePath(entity.getImagePath());
 
         return dto;
 

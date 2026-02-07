@@ -9,7 +9,7 @@
             Ajout d'une Propriété
         </div>
         <div class="card-body">
-            <form th:action="@{/propriete/save}" method="POST" th:object="${propriete}">
+            <form th:action="@{/propriete/save}" method="POST" th:object="${propriete}" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">Adresse</label>
                     <input type="text" class="form-control" id="adresse" name="adresse" required>
@@ -39,6 +39,12 @@
                                 th:value="${disponibl}"
                                 th:text="${disponibl}"></option>
                     </select>
+                </div>
+                <!-- Ajout du champ pour uploader l'image -->
+                <div class="mb-3">
+                    <label class="form-label">Image de la propriété</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    <small class="form-text text-muted">Formats acceptés: JPG, PNG, GIF. Taille max: 10MB</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Terminer</button>
                 <button type="reset" class="btn btn-secondary">Annuler</button>

@@ -11,6 +11,7 @@ public class ProprieteDTO {
     private String description;
     private TypePropriete typePropriete;
     private Disponible disponible;
+    private String imagePath;
 
     public long getId() {
         return id;
@@ -58,5 +59,13 @@ public class ProprieteDTO {
 
     public void setDisponible(Disponible disponible) {
         this.disponible = disponible;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

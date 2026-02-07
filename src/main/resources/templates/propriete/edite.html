@@ -10,7 +10,7 @@
             Modification d'une Propriété
         </div>
         <div class="card-body">
-            <form th:action="@{/propriete/update}" th:method="POST" th:object="${propriete}">
+            <form th:action="@{/propriete/update}" th:method="POST" th:object="${propriete}" enctype="multipart/form-data">
                 <input type="hidden" th:value="${propriete.id}" name="id">
 
                 <div class="mb-3">
@@ -46,6 +46,29 @@
                                 th:value="${disponibl}"
                                 th:text="${disponibl}"></option>
                     </select>
+                </div>
+
+                <!-- Champ pour uploader une nouvelle image -->
+                <div class="mb-3">
+                    <label class="form-label">Nouvelle image (laisser vide pour conserver l'actuelle)</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    <small class="form-text text-muted">Formats acceptés: JPG, PNG, GIF. Taille max: 10MB</small>
+                </div>
+
+                <!-- Affichage de l'image actuelle si elle existe -->
+                <div class="mb-3" th:if="${propriete.imagePath != null and propriete.imagePath != ''}">
+                    <label class="form-label">Image actuelle</label><br>
+                    <img th:src="@{'/uploads/' + ${propriete.imagePath}}"
+                         alt="Image actuelle"
+                         style="max-width: 200px; max-height: 200px;"
+                         class="img-thumbnail mb-2" />
+                    <br>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="supprimerImage" name="supprimerImage" value="true">
+                        <label class="form-check-label" for="supprimerImage">
+                            Supprimer l'image actuelle
+                        </label>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Terminer</button>
