@@ -37,8 +37,8 @@
                                 <td th:text="${reservation.user.nom + ' ' + reservation.user.prenom}"></td>
                                 <td class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
                                          session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
-                                    <a class="btn btn-primary" th:href="@{'/reservation/edit/'+${reservation.id}}">Modifier</a>
-                                    <a class="btn btn-danger" th:href="@{'/reservation/supprimer/'+${reservation.id}}">Supprimer</a>
+                                    <a class="btn btn1 btn-primary" th:href="@{'/reservation/edit/'+${reservation.id}}">Modifier</a>
+                                    <a class="btn btn1 btn-danger" th:href="@{'/reservation/supprimer/'+${reservation.id}}">Supprimer</a>
                                 </td>
                             </tr>
                             </tbody>

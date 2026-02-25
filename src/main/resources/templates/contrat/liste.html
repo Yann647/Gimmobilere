@@ -35,9 +35,10 @@
                                 <td th:text="${contrat.montant}"></td>
                                 <td th:text="${contrat.propriete.adresse}"></td>
                                 <td th:text="${contrat.user.nom + ' ' + contrat.user.prenom}"></td>
+                                <td th:text="${contrat.reservation.statutReservation}"></td>
                                 <td>
-                                    <a class="btn btn-primary" th:href="@{'/contrat/edit/'+${contrat.id}}">Modifier</a>
-                                    <a class="btn btn-danger" th:href="@{'/contrat/supprimer/'+${contrat.id}}">Supprimer</a>
+                                    <a class="btn btn1 btn-primary" th:href="@{'/contrat/edit/'+${contrat.id}}">Modifier</a>
+                                    <a class="btn btn1 btn-danger" th:href="@{'/contrat/supprimer/'+${contrat.id}}">Supprimer</a>
                                 </td>
                             </tr>
                             </tbody>

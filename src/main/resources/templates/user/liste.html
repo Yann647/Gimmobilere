@@ -40,8 +40,8 @@
                                 <td th:text="${user.password}"></td>
                                 <td th:text="${user.role}"></td>
                                 <td class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN)}">
-                                    <a class="btn btn-primary" th:href="@{'/user/edit/'+${user.id}}">Modifier</a>
-                                    <a class="btn btn-danger" th:href="@{'/user/supprimer/'+${user.id}}">Supprimer</a>
+                                    <a class="btn btn1 btn-primary" th:href="@{'/user/edit/'+${user.id}}">Modifier</a>
+                                    <a class="btn btn1 btn-danger" th:href="@{'/user/supprimer/'+${user.id}}">Supprimer</a>
                                 </td>
                             </tr>
                             </tbody>
