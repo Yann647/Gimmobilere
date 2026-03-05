@@ -46,6 +46,15 @@
                     <label class="form-label">Montant</label>
                     <input type="number" class="form-control" id="montant" name="montant" required>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Statut Réservation</label>
+                    <select class="form-control" name="statutReservation">
+                        <option th:each="statut : ${T(com.gestion.immobiliere.Gimmobilere.constant.StatutReservation).values()}"
+                                th:value="${statut}"
+                                th:text="${statut}">
+                        </option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Terminer</button>
                 <button type="reset" class="btn btn-secondary">Annuler</button>
             </form>
