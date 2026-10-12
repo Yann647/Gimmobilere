@@ -23,10 +23,12 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(User user, Model model, HttpSession session) {
-        User loggedInUser = userRepository.findByLoginAndPassword(user.getLogin(),user.getPassword());
-        System.out.println("use" + loggedInUser.toString());
+
+        User loggedInUser = userRepository.findByLoginAndPassword(
+                user.getLogin(), user.getPassword());
+
         if (loggedInUser != null) {
-            session.setAttribute("user",loggedInUser);
+            session.setAttribute("user", loggedInUser);
             return "redirect:/";
         } else {
             model.addAttribute("error", "Identifiants invalides");

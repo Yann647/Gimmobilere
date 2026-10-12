@@ -23,6 +23,28 @@
                     <label class="form-label">Telephone</label>
                     <input type="number" class="form-control" id="telephone" name="telephone" required>
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Type de pièce d'identité</label>
+                    <select class="form-control"
+                            id="typePieceIdentite"
+                            name="typePieceIdentite"
+                            required>
+                        <option value="" disabled selected>Choisir une pièce</option>
+                        <option value="CARTE_IDENTITE">Carte d'identité</option>
+                        <option value="PASSEPORT">Passeport</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Numéro de pièce d'identité</label>
+                    <input type="text"
+                           class="form-control"
+                           id="numeroPieceIdentite"
+                           name="numeroPieceIdentite"
+                           placeholder="Saisir le numéro de la pièce"
+                           required>
+                </div>
                 <div class="mb-3">
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>

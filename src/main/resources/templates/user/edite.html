@@ -28,6 +28,30 @@
                     <input type="number" class="form-control" id="telephone" th:value="${user.telephone}" name="telephone" required>
                 </div>
 
+
+                <div class="mb-3">
+                    <label class="form-label">Type de pièce d'identité</label>
+                    <select class="form-control"
+                            id="typePieceIdentite"
+                            name="typePieceIdentite"
+                            th:field="*{typePieceIdentite}"
+                            required>
+                        <option value="">Choisir une pièce</option>
+                        <option value="CARTE_IDENTITE">Carte d'identité</option>
+                        <option value="PASSEPORT">Passeport</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Numéro de pièce d'identité</label>
+                    <input type="text"
+                           class="form-control"
+                           id="numeroPieceIdentite"
+                           th:field="*{numeroPieceIdentite}"
+                           placeholder="Saisir le numéro de la pièce"
+                           required>
+                </div>
+
                 <div class="mb-3">
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" th:value="${user.email}" name="email" required>

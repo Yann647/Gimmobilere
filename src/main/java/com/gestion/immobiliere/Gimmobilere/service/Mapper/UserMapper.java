@@ -20,6 +20,8 @@ public class UserMapper {
         entity.setPrenom(dto.getPrenom());
         entity.setEmail(dto.getEmail());
         entity.setTelephone(dto.getTelephone());
+        entity.setTypePieceIdentite(dto.getTypePieceIdentite());
+        entity.setNumeroPieceIdentite(dto.getNumeroPieceIdentite());
         entity.setLogin(dto.getLogin());
         entity.setRole(dto.getRole());
 
@@ -33,9 +35,11 @@ public class UserMapper {
         UserDTO dto = new UserDTO();
         dto.setId(entity.getId());
         dto.setNom(entity.getNom());
-        dto.setPrenom(dto.getPrenom());
+        dto.setPrenom(entity.getPrenom());
         dto.setEmail(entity.getEmail());
         dto.setTelephone(entity.getTelephone());
+        dto.setTypePieceIdentite(entity.getTypePieceIdentite());
+        dto.setNumeroPieceIdentite(entity.getNumeroPieceIdentite());
         dto.setLogin(entity.getLogin());
         dto.setRole(entity.getRole());
 

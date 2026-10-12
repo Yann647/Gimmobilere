@@ -31,6 +31,39 @@
                                   border-radius: 5px; box-sizing: border-box;">
                 </div>
 
+
+                <div style="margin-bottom: 15px;">
+                    <label for="typePieceIdentite"
+                           style="display: block; margin-bottom: 5px;">
+                        Type de pièce d'identité :
+                    </label>
+
+                    <select id="typePieceIdentite"
+                            name="typePieceIdentite"
+                            required
+                            style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                   border-radius: 5px; box-sizing: border-box;">
+                        <option value="" disabled selected>Choisir une pièce</option>
+                        <option value="CARTE_IDENTITE">Carte d'identité</option>
+                        <option value="PASSEPORT">Passeport</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="numeroPieceIdentite"
+                           style="display: block; margin-bottom: 5px;">
+                        Numéro de pièce d'identité :
+                    </label>
+
+                    <input type="text"
+                           id="numeroPieceIdentite"
+                           name="numeroPieceIdentite"
+                           placeholder="Saisir le numéro de la pièce"
+                           required
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                  border-radius: 5px; box-sizing: border-box;">
+                </div>
+
                 <div style="margin-bottom: 15px;">
                     <label for="email" style="display: block; margin-bottom: 5px;">Email :</label>
                     <input type="email" id="email" name="email" required

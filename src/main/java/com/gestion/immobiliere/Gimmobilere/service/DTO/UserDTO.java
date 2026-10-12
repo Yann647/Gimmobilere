@@ -9,6 +9,8 @@ public class UserDTO {
     private String prenom;
     private String email;
     private String telephone;
+    private String typePieceIdentite;
+    private String numeroPieceIdentite;
     private String login;
     private Role role;
 
@@ -50,6 +52,23 @@ public class UserDTO {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+
+    public String getTypePieceIdentite() {
+        return typePieceIdentite;
+    }
+
+    public void setTypePieceIdentite(String typePieceIdentite) {
+        this.typePieceIdentite = typePieceIdentite;
+    }
+
+    public String getNumeroPieceIdentite() {
+        return numeroPieceIdentite;
+    }
+
+    public void setNumeroPieceIdentite(String numeroPieceIdentite) {
+        this.numeroPieceIdentite = numeroPieceIdentite;
     }
 
     public String getLogin() {

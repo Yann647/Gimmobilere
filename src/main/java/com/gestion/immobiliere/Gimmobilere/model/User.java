@@ -12,6 +12,8 @@ public class User {
     private String nom;
     private String prenom;
     private String telephone;
+    private String typePieceIdentite;
+    private String numeroPieceIdentite;
     private String email;
     private String login;
     private String password;
@@ -49,6 +51,22 @@ public class User {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getTypePieceIdentite() {
+        return typePieceIdentite;
+    }
+
+    public void setTypePieceIdentite(String typePieceIdentite) {
+        this.typePieceIdentite = typePieceIdentite;
+    }
+
+    public String getNumeroPieceIdentite() {
+        return numeroPieceIdentite;
+    }
+
+    public void setNumeroPieceIdentite(String numeroPieceIdentite) {
+        this.numeroPieceIdentite = numeroPieceIdentite;
     }
 
     public String getEmail() {
