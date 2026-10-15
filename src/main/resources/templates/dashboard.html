@@ -5,7 +5,7 @@
 
 <div layout:fragment="content">
     <!-- Section des cartes de statistiques - Visible seulement pour ADMIN et AGENT  -->
-    <div class="row mb-4" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN || session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+    <div class="row mb-4" th:if="${connected && (role == 'ROLE_ADMIN' || role == 'ROLE_AGENT')}">
         <div class="col-md-3">
             <div class="card bg-primary text-white">
                 <div class="card-body">
@@ -39,8 +39,8 @@
             </div>
         </div>
     </div>
-    <!-- Message pour les utilisateurs non autorisés -->
-    <div th:if="${session.user != null && (session.user.role != T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN && session.user.role != T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+    <!-- Message de bienvenue visible uniquement par le CLIENT -->
+    <div th:if="${connected && role == 'ROLE_CLIENT'}">
         <div class="alert alert-info text-center">
             <h4>Bienvenue sur votre espace personnel</h4>
         </div>

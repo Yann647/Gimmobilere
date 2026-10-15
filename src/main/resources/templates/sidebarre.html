@@ -1,68 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <nav class="sidebar-nav">
     <ul id="sidebarnav">
-        <!-- Common for all users -->
+
+        <!-- Accueil : tous les utilisateurs -->
         <li class="sidebar-item">
-            <a class="sidebar-link sidebar-link" th:href="@{/}" aria-expanded="false">
+            <a class="sidebar-link" th:href="@{/}">
                 <i data-feather="home" class="feather-icon"></i>
                 <span class="hide-menu">Accueil</span>
             </a>
         </li>
-        <li class="list-divider"></li>
 
-        <!-- Management section - visible for ADMIN and AGENT -->
-        <li class="nav-small-cap" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                          session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+        <!-- Gestion : ADMIN et AGENT uniquement -->
+        <li class="nav-small-cap"
+            sec:authorize="hasAnyRole('ADMIN', 'AGENT')">
             <span class="hide-menu">Gestion</span>
         </li>
 
-        <!-- Contracts - visible for ADMIN and AGENT -->
-        <li class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
-            <a class="sidebar-link" th:href="@{/contrat/liste}" aria-expanded="false">
+        <!-- Contrats : ADMIN et AGENT -->
+        <li class="sidebar-item"
+            sec:authorize="hasAnyRole('ADMIN', 'AGENT')">
+            <a class="sidebar-link" th:href="@{/contrat/liste}">
                 <i data-feather="file-text" class="feather-icon"></i>
                 <span class="hide-menu">Contrats</span>
             </a>
         </li>
 
-        <!-- Properties - visible for all users but with different links -->
-        <li class="sidebar-item" th:if="${session.user != null}">
-            <a class="sidebar-link sidebar-link"
-               th:href="${session.user.role == 'CLIENT'} ?
-                        @{/propriete/liste} : @{/propriete/liste}"
-               aria-expanded="false">
+        <!-- Propriétés : CLIENT, AGENT et ADMIN -->
+        <li class="sidebar-item"
+            sec:authorize="hasAnyRole('CLIENT', 'AGENT', 'ADMIN')">
+            <a class="sidebar-link" th:href="@{/propriete/liste}">
                 <i data-feather="home" class="feather-icon"></i>
                 <span class="hide-menu">Propriétés</span>
             </a>
         </li>
 
-        <!-- Reservations - visible for all logged in users -->
-        <li class="sidebar-item" th:if="${session.user != null}">
-            <a class="sidebar-link sidebar-link" th:href="@{/reservation/liste}" aria-expanded="false">
+        <!-- Réservations : CLIENT, AGENT et ADMIN -->
+        <li class="sidebar-item"
+            sec:authorize="hasAnyRole('CLIENT', 'AGENT', 'ADMIN')">
+            <a class="sidebar-link" th:href="@{/reservation/liste}">
                 <i data-feather="calendar" class="feather-icon"></i>
                 <span class="hide-menu">Réservations</span>
             </a>
         </li>
 
-        <!-- Users - visible only for ADMIN -->
-        <li class="sidebar-item" th:if="${session.user != null && session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN}">
-            <a class="sidebar-link sidebar-link" th:href="@{/user/liste}" aria-expanded="false">
+        <!-- Utilisateurs : ADMIN uniquement -->
+        <li class="sidebar-item"
+            sec:authorize="hasRole('ADMIN')">
+            <a class="sidebar-link" th:href="@{/user/liste}">
                 <i data-feather="users" class="feather-icon"></i>
                 <span class="hide-menu">Utilisateurs</span>
             </a>
         </li>
 
-        <li class="list-divider" th:if="${session.user != null}"></li>
-        <li class="nav-small-cap" th:if="${session.user != null}"><span class="hide-menu">Extra</span></li>
+        <!-- Déconnexion : utilisateurs connectés -->
+        <li class="list-divider"
+            sec:authorize="isAuthenticated()"></li>
 
-        <!-- Logout - visible for all logged in users -->
-        <li class="sidebar-item" th:if="${session.user != null}">
-            <a class="sidebar-link sidebar-link" th:href="@{/logout}" aria-expanded="false">
-                <i data-feather="log-out" class="feather-icon"></i>
-                <span class="hide-menu">Déconnexion</span>
-            </a>
+        <li class="nav-small-cap"
+            sec:authorize="isAuthenticated()">
+            <span class="hide-menu">Extra</span>
         </li>
+
+        <li class="sidebar-item"
+            sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit"
+                        class="sidebar-link"
+                        style="border: none; background: none; width: 100%; text-align: left;">
+                    <i data-feather="log-out" class="feather-icon"></i>
+                    <span class="hide-menu">Déconnexion</span>
+                </button>
+            </form>
+        </li>
+
     </ul>
 </nav>
+
 </html>

@@ -17,8 +17,26 @@ public class UserController {
     }
 
     @RequestMapping(value = "user/liste")
-    public String listUsers(Model model) {
+    public String listUsers(Model model, org.springframework.security.core.Authentication authentication) {
         model.addAttribute("users", userRepository.findAll());
+
+        boolean connected = authentication != null
+                && authentication.isAuthenticated()
+                && !(authentication instanceof
+                org.springframework.security.authentication.AnonymousAuthenticationToken);
+
+        String role = "";
+        if (connected) {
+            role = authentication.getAuthorities()
+                    .stream()
+                    .map(org.springframework.security.core.GrantedAuthority::getAuthority)
+                    .findFirst()
+                    .orElse("");
+        }
+
+        model.addAttribute("connected", connected);
+        model.addAttribute("role", role);
+
         return "user/liste";
     }
 

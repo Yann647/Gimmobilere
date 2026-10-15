@@ -1,55 +1,112 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <body style="font-family: Arial, sans-serif; background: #f3f3f3; margin: 0; padding: 0;">
-<div layout:fragment="content" style="max-width: 400px; margin: 60px auto; background: white; padding: 30px;
-                                    border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+
+<div layout:fragment="content"
+     style="max-width: 400px; margin: 60px auto; background: white; padding: 30px;
+            border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+
     <div class="card">
         <div class="card-header">
-            <h2 style="text-align: center; margin-bottom: 25px;">Connexion</h2>
+            <h2 style="text-align: center; margin-bottom: 25px;">
+                Connexion
+            </h2>
         </div>
+
         <div class="card-body">
+
             <form th:action="@{/login}" method="post">
-                <div style="margin-bottom: 15px;">
-                    <label for="login" style="display: block; margin-bottom: 5px;">Nom d'utilisateur :</label>
-                    <input type="text" id="login" name="login" required
-                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
-                                  border-radius: 5px; box-sizing: border-box;">
-                </div>
 
-                <div style="margin-bottom: 15px;">
-                    <label for="password" style="display: block; margin-bottom: 5px;">Mot de passe :</label>
-                    <input type="password" id="password" name="password" required
-                           style="width: 100%; padding: 10px; border: 1px solid #ccc;
-                                  border-radius: 5px; box-sizing: border-box;">
-                </div>
-
+                <!-- Message d'erreur en cas d'identifiants incorrects -->
                 <div th:if="${param.error}"
                      style="margin-bottom: 15px; padding: 10px; color: #b30000;
                             background: #ffe6e6; border-left: 4px solid #b30000;
                             border-radius: 5px;">
-                    Identifiants incorrects, veuillez réessayer.
+                    Identifiant ou mot de passe incorrect.
                 </div>
 
-                <button type="submit"
-                        style="width: 100%; padding: 12px; background: #4CAF50; color: white;
-                               border: none; border-radius: 5px; cursor: pointer;
-                               font-size: 16px;">
+                <!-- Message après déconnexion -->
+                <div th:if="${param.logout}"
+                     style="margin-bottom: 15px; padding: 10px; color: #155724;
+                            background: #d4edda; border-left: 4px solid #28a745;
+                            border-radius: 5px;">
+                    Vous avez été déconnecté avec succès.
+                </div>
+
+                <!-- Champ identifiant -->
+                <div style="margin-bottom: 15px;">
+                    <label for="login"
+                           style="display: block; margin-bottom: 5px;">
+                        Nom d'utilisateur :
+                    </label>
+
+                    <input
+                            type="text"
+                            id="login"
+                            name="login"
+                            autocomplete="username"
+                            required
+                            style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                               border-radius: 5px; box-sizing: border-box;">
+                </div>
+
+                <!-- Champ mot de passe -->
+                <div style="margin-bottom: 15px;">
+                    <label for="password"
+                           style="display: block; margin-bottom: 5px;">
+                        Mot de passe :
+                    </label>
+
+                    <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            autocomplete="current-password"
+                            required
+                            style="width: 100%; padding: 10px; border: 1px solid #ccc;
+                               border-radius: 5px; box-sizing: border-box;">
+                </div>
+
+                <!-- Jeton CSRF pour la protection du formulaire -->
+                <input
+                        type="hidden"
+                        th:name="${_csrf.parameterName}"
+                        th:value="${_csrf.token}">
+
+                <!-- Bouton de connexion -->
+                <button
+                        type="submit"
+                        style="width: 100%; padding: 12px; background: #4CAF50;
+                           color: white; border: none; border-radius: 5px;
+                           cursor: pointer; font-size: 16px;">
                     Se connecter
                 </button>
+
             </form>
+
         </div>
     </div>
 
+    <!-- Lien vers l'inscription -->
     <p style="text-align: center; margin-top: 20px;">
         Pas encore de compte ?
-        <a th:href="@{/inscription}" style="color: #007bff; text-decoration: none;">Inscrivez-vous ici</a>
+        <a th:href="@{/inscription}"
+           style="color: #007bff; text-decoration: none;">
+            Inscrivez-vous ici
+        </a>
     </p>
 
+    <!-- Retour à l'accueil -->
     <p style="text-align: center;">
-        <a th:href="@{/}" style="color: #007bff; text-decoration: none;">Retour à l'accueil</a>
+        <a th:href="@{/}"
+           style="color: #007bff; text-decoration: none;">
+            Retour à l'accueil
+        </a>
     </p>
 
 </div>
+
 </body>
 </html>

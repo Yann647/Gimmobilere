@@ -1,37 +1,44 @@
 package com.gestion.immobiliere.Gimmobilere.web.controller;
 
-import com.gestion.immobiliere.Gimmobilere.constant.Role;
 import com.gestion.immobiliere.Gimmobilere.model.User;
-import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.gestion.immobiliere.Gimmobilere.service.UserAccountService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class RegisterController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserAccountService userAccountService;
 
-    public RegisterController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public RegisterController(UserAccountService userAccountService) {
+        this.userAccountService = userAccountService;
     }
 
-    @RequestMapping(value = "inscription")
-    public String addUser(Model model) {
+    @GetMapping("/inscription")
+    public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
         return "inscription";
     }
 
-    @PostMapping("inscription")
-    public String addUser(@ModelAttribute("user") User user) {
-        user.setRole(Role.CLIENT);
-        User savedUer = userRepository.save(user);
-        return "redirect:/";
+    @PostMapping("/inscription")
+    public String register(
+            @ModelAttribute("user") User user,
+            Model model) {
+
+        try {
+            userAccountService.registerClient(user);
+            return "redirect:/login?registered";
+
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("user", user);
+            user.setPassword("");
+            return "inscription";
+        }
     }
 
 

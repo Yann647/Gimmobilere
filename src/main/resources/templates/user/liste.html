@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN)}">
+                <div class="card-header" th:if="${connected && (role == 'ROLE_ADMIN')}">
                     <a th:href="@{/user/ajout}" class="btn btn-primary">Ajouter un Utilisateur</a>
                 </div>
                 <div class="card-body">
@@ -27,7 +27,7 @@
                                 <th>Login</th>
                                 <th>Mot de passe</th>
                                 <th>Role</th>
-                                <th class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN)}">
+                                <th class="sidebar-item" th:if="${connected && (role == 'ROLE_ADMIN')}">
                                     Action</th>
                             </tr>
                             </thead>
@@ -43,7 +43,7 @@
                                 <td th:text="${user.login}"></td>
                                 <td th:text="${user.password}"></td>
                                 <td th:text="${user.role}"></td>
-                                <td class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN)}">
+                                <td class="sidebar-item" th:if="${connected && (role == 'ROLE_ADMIN')}">
                                     <a class="btn btn1 btn-primary" th:href="@{'/user/edit/'+${user.id}}">Modifier</a>
                                     <a class="btn btn1 btn-danger" th:href="@{'/user/supprimer/'+${user.id}}">Supprimer</a>
                                 </td>

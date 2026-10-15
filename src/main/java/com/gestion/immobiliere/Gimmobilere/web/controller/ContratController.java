@@ -40,8 +40,8 @@ public class ContratController {
     @RequestMapping(value = "contrat/ajout")
     public String addContrat(Model model) {
         model.addAttribute("contrat", new Contrat());
-        model.addAttribute("propriete", proprieteRepository.findAll());
-        model.addAttribute("reservation", reservationRepository.findAll());
+        model.addAttribute("proprietes", proprieteRepository.findAll());
+        model.addAttribute("reservations", reservationRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         return "contrat/add";
     }
@@ -49,8 +49,8 @@ public class ContratController {
     @RequestMapping(value = "contrat/edit/{id}")
     public String editContrat(@PathVariable long id, Model model) {
         model.addAttribute("contrat", contratRepository.findById(id).orElse(null));
-        model.addAttribute("propriete", proprieteRepository.findAll());
-        model.addAttribute("reservation", reservationRepository.findAll());
+        model.addAttribute("proprietes", proprieteRepository.findAll());
+        model.addAttribute("reservations", reservationRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         return "contrat/edite";
     }

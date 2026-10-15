@@ -1,12 +1,15 @@
 package com.gestion.immobiliere.Gimmobilere.web.controller;
 
-
 import com.gestion.immobiliere.Gimmobilere.repository.ContratRepository;
 import com.gestion.immobiliere.Gimmobilere.repository.ProprieteRepository;
 import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DashboardController {
@@ -24,20 +27,34 @@ public class DashboardController {
     }
 
 
+    @GetMapping({"/dashboard"})
+    public String getDashboard(Model model, Authentication authentication) {
 
-    @RequestMapping("/dashboard")
-    public String getDashboard(Model model){
-        // Statistiques de base
+        boolean connected = authentication != null
+                && authentication.isAuthenticated()
+                && !(authentication instanceof AnonymousAuthenticationToken);
+
+        String role = "";
+
+        if (connected) {
+            role = authentication.getAuthorities()
+                    .stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .findFirst()
+                    .orElse("");
+        }
+
+        model.addAttribute("connected", connected);
+        model.addAttribute("role", role);
+
+        // Statistiques
         model.addAttribute("totalProperties", proprieteRepository.count());
         model.addAttribute("totalUsers", userRepository.count());
         model.addAttribute("totalContrats", contratRepository.count());
-
-        // Pour les ventes et locations, vous pouvez adapter selon votre logique métier
-        // Pour l'instant, on utilise le même count que les contrats
         model.addAttribute("totalRentals", contratRepository.count());
-        model.addAttribute("totalSales", 0); // À adapter selon votre logique
+        model.addAttribute("totalSales", 0);
 
-        // Liste des utilisateurs pour le tableau
+        // Liste des utilisateurs
         model.addAttribute("users", userRepository.findAll());
 
         return "dashboard";

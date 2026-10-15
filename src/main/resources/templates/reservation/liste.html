@@ -8,8 +8,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+                <div class="card-header" th:if="${connected && (role == 'ROLE_ADMIN' ||  role == 'ROLE_AGENT')}">
                     <a th:href="@{/reservation/ajout}" class="btn btn-primary">Ajouter une Réservation</a>
                 </div>
                 <div class="card-body">
@@ -23,8 +22,7 @@
                                 <th>Statut</th>
                                 <th>Adresse</th>
                                 <th>nom du client</th>
-                                <th class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+                                <th class="sidebar-item" th:if="${connected && (role == 'ROLE_ADMIN' ||  role == 'ROLE_AGENT')}">
                                     Action</th>
                             </tr>
                             </thead>
@@ -35,8 +33,7 @@
                                 <td th:text="${reservation.statutReservation}"></td>
                                 <td th:text="${reservation.propriete.adresse}"></td>
                                 <td th:text="${reservation.user.nom + ' ' + reservation.user.prenom}"></td>
-                                <td class="sidebar-item" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+                                <td class="sidebar-item" th:if="${connected && (role == 'ROLE_ADMIN' ||  role == 'ROLE_AGENT')}">
                                     <a class="btn btn1 btn-primary" th:href="@{'/reservation/edit/'+${reservation.id}}">Modifier</a>
                                     <a class="btn btn1 btn-danger" th:href="@{'/reservation/supprimer/'+${reservation.id}}">Supprimer</a>
                                 </td>

@@ -117,24 +117,32 @@
           <!-- ============================================================== -->
           <!-- User profile and search -->
           <!-- ============================================================== -->
-          <li class="nav-item dropdown" th:if="${session.user != null}">
-            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-              <span class="ml-2 d-none d-lg-inline-block"><span>Bonjour,</span> <span
-                      class="text-dark" th:text="${session.user != null ? session.user.login : 'Inviter'}"></span> <i data-feather="chevron-down"
-                                                            class="svg-icon"></i></span>
+          <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+            <a class="nav-link dropdown-toggle"
+               href="javascript:void(0)"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">
+              <span class="ml-2 d-none d-lg-inline-block">
+                <span>Bonjour,</span>
+                <span class="text-dark" sec:authentication="name"></span>
+                <i data-feather="chevron-down" class="svg-icon"></i>
+              </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" th:href="@{/profil}">
-                <i data-feather="user" class="svg-icon mr-2 ml-1"></i>
-                Profil</a>
+                Profil
+              </a>
+
               <a class="dropdown-item" th:href="@{/dashboard}">
-                <i data-feather="layout" class="svg-icon mr-2 ml-1"></i>
-                Tableau de bord</a>
-              <a class="dropdown-item" href="/logout">
-                <i data-feather="power" class="svg-icon mr-2 ml-1"></i>
-                Déconnexion</a>
+                Tableau de bord
+              </a>
+
+              <form th:action="@{/logout}" method="post">
+                <button type="submit" class="dropdown-item">
+                  Déconnexion
+                </button>
+              </form>
             </div>
           </li>
           <!-- ============================================================== -->

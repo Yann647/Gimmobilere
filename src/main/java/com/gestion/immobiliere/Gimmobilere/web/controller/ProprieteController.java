@@ -30,8 +30,26 @@ public class ProprieteController {
     }
 
     @RequestMapping(value = "propriete/liste")
-    public String listProprietes(Model model) {
+    public String listProprietes(Model model,
+                                 org.springframework.security.core.Authentication authentication) {
         model.addAttribute("proprietes", proprieteRepository.findAll());
+
+        boolean connected = authentication != null
+                && authentication.isAuthenticated()
+                && !(authentication instanceof
+                org.springframework.security.authentication.AnonymousAuthenticationToken);
+
+        String role = "";
+        if (connected) {
+            role = authentication.getAuthorities().stream()
+                    .map(org.springframework.security.core.GrantedAuthority::getAuthority)
+                    .findFirst()
+                    .orElse("");
+        }
+
+        model.addAttribute("connected", connected);
+        model.addAttribute("role", role);
+
         return "propriete/liste";
     }
 

@@ -26,8 +26,25 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "reservation/liste")
-    public String listReservations(Model model) {
+    public String listReservations(Model model, org.springframework.security.core.Authentication authentication) {
         model.addAttribute("reservations", reservationRepository.findAll());
+
+        boolean connected = authentication != null
+                && authentication.isAuthenticated()
+                && !(authentication instanceof
+                org.springframework.security.authentication.AnonymousAuthenticationToken);
+
+        String role = "";
+        if (connected) {
+            role = authentication.getAuthorities().stream()
+                    .map(org.springframework.security.core.GrantedAuthority::getAuthority)
+                    .findFirst()
+                    .orElse("");
+        }
+
+        model.addAttribute("connected", connected);
+        model.addAttribute("role", role);
+
         return "reservation/liste";
     }
 

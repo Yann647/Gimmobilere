@@ -2,10 +2,12 @@ package com.gestion.immobiliere.Gimmobilere.web.controller;
 
 import com.gestion.immobiliere.Gimmobilere.model.User;
 import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.core.Authentication;
 
 @Controller
 @RequestMapping("/profil")
@@ -19,22 +21,24 @@ public class ProfilController {
 
     // Afficher le profil de l'utilisateur connecté
     @GetMapping
-    public String profil(HttpSession session, Model model) {
-        // Récupérer l'utilisateur connecté depuis la session
-        User connectedUser = (User) session.getAttribute("user");
+    public String profil(Authentication authentication, Model model) {
 
-        // Vérifier si l'utilisateur est connecté
-        if (connectedUser == null) {
+        // Vérifier que l'utilisateur est connecté
+        if (authentication == null
+                || !authentication.isAuthenticated()
+                || authentication.getName() == null) {
             return "redirect:/login";
         }
 
-        // Charger les données à jour depuis la base de données
-        User user = userRepository.findById(connectedUser.getId()).orElse(null);
+        // Rechercher l'utilisateur connecté grâce à son login
+        User user = userRepository.findByLogin(authentication.getName())
+                .orElse(null);
+
         if (user == null) {
             return "redirect:/login";
         }
 
-        // Ajouter l'utilisateur au modèle pour l'affichage
+        // Envoyer l'utilisateur à la page Thymeleaf
         model.addAttribute("user", user);
         return "profil";
     }

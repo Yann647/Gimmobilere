@@ -8,8 +8,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header" th:if="${session.user != null && (session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT)}">
+                <div class="card-header" th:if="${connected && (role == 'ROLE_ADMIN' ||  role == 'ROLE_AGENT')}">
                     <a th:href="@{/propriete/ajout}" class="btn btn-primary">Ajouter une Propriété</a>
                 </div>
                 <div class="card-body">
@@ -24,7 +23,7 @@
                                 <th>Type de propriete</th>
                                 <th>Description</th>
                                 <th>Disponibilite</th>
-                                <th th:if="${session.user != null}">Action</th>
+                                <th th:if="${connected}">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -35,13 +34,12 @@
                                 <td th:text="${propriete.typePropriete}"></td>
                                 <td th:text="${propriete.description}"></td>
                                 <td th:text="${propriete.disponible}"></td>
-                                <td th:if="${session.user != null}">
+                                <td th:if="${connected}">
                                     <!-- Bouton Visualiser pour tous les utilisateurs connectés -->
                                     <a class="btn btn1 btn-info btn-sm" th:href="@{'/propriete/visionner/'+${propriete.id}}">Visualiser</a>
 
                                     <!-- Boutons Modifier/Supprimer seulement pour ADMIN et AGENT -->
-                                    <span th:if="${session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).ADMIN ||
-                                         session.user.role == T(com.gestion.immobiliere.Gimmobilere.constant.Role).AGENT}">
+                                    <span th:if="${role == 'ROLE_ADMIN' || role == 'ROLE_AGENT'}">
                                         <a class="btn btn1 btn-primary btn-sm" th:href="@{'/propriete/edit/'+${propriete.id}}">Modifier</a>
                                         <a class="btn btn1 btn-danger btn-sm" th:href="@{'/propriete/supprimer/'+${propriete.id}}">Supprimer</a>
                                     </span>
