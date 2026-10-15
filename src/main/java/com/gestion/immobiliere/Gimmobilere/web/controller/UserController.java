@@ -2,6 +2,7 @@ package com.gestion.immobiliere.Gimmobilere.web.controller;
 
 import com.gestion.immobiliere.Gimmobilere.model.User;
 import com.gestion.immobiliere.Gimmobilere.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping(value = "user/liste")
@@ -54,13 +57,31 @@ public class UserController {
 
     @RequestMapping(value = "user/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/user/liste";
     }
 
     @RequestMapping(value = "user/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute User user) {
-        userRepository.save(user);
+        User existingUser = userRepository.findById(user.getId()).orElse(null);
+
+        if (existingUser == null) {
+            return "redirect:/user/liste";
+        }
+
+        if (user.getPassword() != null && !user.getPassword().isBlank()) {
+            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+
+        // Mettre à jour les autres champs sans remplacer le mot de passe
+        existingUser.setNom(user.getNom());
+        existingUser.setPrenom(user.getPrenom());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setLogin(user.getLogin());
+        existingUser.setRole(user.getRole());
+
+        userRepository.save(existingUser);
         return "redirect:/user/liste";
     }
 
