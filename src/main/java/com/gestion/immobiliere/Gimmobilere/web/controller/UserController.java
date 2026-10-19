@@ -64,24 +64,32 @@ public class UserController {
 
     @RequestMapping(value = "user/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute User user) {
-        User existingUser = userRepository.findById(user.getId()).orElse(null);
+
+        User existingUser = userRepository.findById(user.getId())
+                .orElse(null);
 
         if (existingUser == null) {
             return "redirect:/user/liste";
         }
 
-        if (user.getPassword() != null && !user.getPassword().isBlank()) {
-            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
-
-        // Mettre à jour les autres champs sans remplacer le mot de passe
         existingUser.setNom(user.getNom());
         existingUser.setPrenom(user.getPrenom());
+        existingUser.setTelephone(user.getTelephone());
+        existingUser.setTypePieceIdentite(user.getTypePieceIdentite());
+        existingUser.setNumeroPieceIdentite(user.getNumeroPieceIdentite());
         existingUser.setEmail(user.getEmail());
         existingUser.setLogin(user.getLogin());
         existingUser.setRole(user.getRole());
 
+        if (user.getPassword() != null
+                && !user.getPassword().isBlank()) {
+            existingUser.setPassword(
+                    passwordEncoder.encode(user.getPassword())
+            );
+        }
+
         userRepository.save(existingUser);
+
         return "redirect:/user/liste";
     }
 
